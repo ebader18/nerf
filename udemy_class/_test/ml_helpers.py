@@ -23,7 +23,7 @@ def training(model, optimizer, scheduler, tn, tf, nb_bins, nb_epochs, data_loade
             
         scheduler.step()
         
-        torch.save(model.cpu(), 'model_nerf')
+        torch.save(model.cpu(), f'model_nerf-epoch_{epoch}')
         model.to(device)
         
     return training_loss

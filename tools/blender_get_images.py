@@ -6,10 +6,10 @@ import math
 import numpy as np
 
 # Parameters
-model_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_models/helmet/Helmet/Helmet.obj'
-images_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_images/helmet/400x400/images/'
-intrinsics_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_images/helmet/400x400/intrinsics/'
-extrinsics_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_images/helmet/400x400/extrinsics/'
+model_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_models/helmet/Helmet.obj'
+images_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_images/helmet/400x400/imgs/'
+intrinsics_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_images/helmet/400x400/train/intrinsics/'
+extrinsics_path = f'C:/_sw/eb_python/deep_learning/_dataset/NeRF/_images/helmet/400x400/train/pose/'
 hres, vres = 400, 400
 cam_fov = 20.
 cam_distance  = (1./2.) / np.tan(cam_fov/2 * np.pi/180.) * 1.5
@@ -126,7 +126,7 @@ for index, position in enumerate(camera_positions):
     rot_quat = direction.to_track_quat('-Z', 'Y')
     cam.rotation_euler = rot_quat.to_euler()
     
-    filename = f'out{index:04}'
+    filename = f'train_{index:04}'
     bpy.context.scene.camera = cam
     
     intrinsic_camera = generate_intrinsic_matrix(cam, hres, vres)
